@@ -83,17 +83,15 @@ button:active {
  margin-left: 5px;
 }
 
-.user-list .user-item #delete-user {
+.user-list .user-item #delete-user,
+.user-list .user-item  #details {
     position: absolute;
-    right: 0;
     width: 34px;
     height: 100%;
     opacity: 0;
     cursor: pointer;
     transition: opacity ease-in 0.1s;
-    background-color: #CF0404;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
-    font-size: 0.5em;
     color: white;
     display: flex;
     align-items: center;
@@ -101,9 +99,24 @@ button:active {
     border-radius: 1px;
 }
 
-.user-list .user-item:hover #delete-user {
+.user-list .user-item #delete-user {    
+    right: 0;
+    background-color: #CF0404;
+    font-size: 0.5em;
+}
+
+.user-list .user-item  #details {
+    background-color: green;
+    right: 42px;
+    color: white;
+    font-size: 2em;
+}
+
+.user-list .user-item:hover #delete-user,
+.user-list .user-item:hover #details {
     opacity: 0.9;
 }
+
 
 .user-list .users-counter {
     margin-left: 2.5px;
