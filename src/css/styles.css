@@ -115,6 +115,7 @@ button:active {
 .user-list .user-item:hover #delete-user,
 .user-list .user-item:hover #details {
     opacity: 0.9;
+    transition-delay:0.3s;
 }
 
 
@@ -130,3 +131,14 @@ button:active {
     margin-top: 1.8em;
 }
 
+/*--------------*/
+/* Page Routing*/
+.main-content .page {
+    display: none;
+    visibility: hidden;
+}
+
+.main-content .page.show {
+    display: flex;
+    visibility: initial;
+}

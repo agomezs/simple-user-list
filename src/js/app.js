@@ -3,7 +3,7 @@
  * @param {}
  **/
 (function (w, d, u) {
-    "use strict";
+    'use strict';
     
     var myMainModule  = function () {};
     
