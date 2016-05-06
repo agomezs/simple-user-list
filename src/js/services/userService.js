@@ -6,7 +6,7 @@
     
     var users = [];
     var posts = [];
-    var usersFormated = []
+    var _callback;
     
     function buildUsersList() {
         users.forEach(function(user){
@@ -14,6 +14,9 @@
                 return user.id === post.userId;
             });
         });
+        if(_callback) {
+            _callback(users);   
+        }
     }
     
     function retrievePosts() {
@@ -24,7 +27,7 @@
         });
     }
     
-    function retrieveUsers(response) {
+    function retrieveUsers() {
         w.$.getJson(USERS_URL)
         .then(function (response) {
             users = response;
@@ -34,8 +37,9 @@
     }
     
     var userService = {
-      getUsers: function () {
-          return users;
+      list: function (callback) {
+          _callback = callback;
+          retrieveUsers();
       }
     };
     

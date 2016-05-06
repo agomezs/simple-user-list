@@ -1,22 +1,38 @@
 (function (w, d, u) {
     "use strict";
     
-    var USER_ITEM_TEMPLATE = '<div class="user-item center-content"><span>{USER-NAME}</span><span>(0 posts)</span><button>Delete</button></div>';
+    var USER_ITEM_TEMPLATE = '<div class="user-item center-content"><span>{USER-NAME}</span><span>({POSTS} posts)</span><button>Delete</button></div>';
     
     var usersElement = d.querySelector('.user-list .users');
     // Extend the user list with the Subject's (observe) methods.
     w.$.helper.extend(new w.$.Subject(),  usersElement);
     
-    function addNewUser () {
+    var fillUserList = function() {
+        w.$.userService.list(function(users) {
+            users.forEach(function(user){
+                addUserElement(user.name, user.posts.length);
+            }); 
+        });
+    }();
+    
+    function addUserElement (userName, postsCount) {
+        postsCount = postsCount || 0;
+        var el = USER_ITEM_TEMPLATE.replace('{USER-NAME}', userName);
+        el = el.replace('{POSTS}', postsCount);
+        usersElement.innerHTML = el + usersElement.innerHTML;        
+    };
+    
+    function addUserElementClick() {
         var inputField = d.querySelector('.input-field');
         var inputValue = w.$.helper.scapeHtml(inputField.value);
         inputField.value = '';
         if(inputValue) {
-            usersElement.innerHTML = USER_ITEM_TEMPLATE.replace('{USER-NAME}', inputValue) + usersElement.innerHTML;
-        }
+            addUserElement(inputValue);
+        }        
     };
     
-    // Subscribe the total users function
+    
+    // Subscribe to get the total users.
     function setTotalUsers () {
         var userCountEl = d.querySelector('#user-count');
         var count = usersElement.querySelectorAll('.user-item');
@@ -44,7 +60,7 @@
 
     var addUserButton = d.querySelector('#add-user');
     addUserButton.addEventListener('click', function() {
-        addNewUser();
+        addUserElementClick();
     });
     
 })(window, document)
