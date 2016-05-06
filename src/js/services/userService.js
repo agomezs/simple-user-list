@@ -38,6 +38,7 @@
     
     var userService = {
       list: function (callback) {
+          // TODO: use a promise.
           _callback = callback;
           retrieveUsers();
       }

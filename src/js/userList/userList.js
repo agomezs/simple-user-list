@@ -13,14 +13,15 @@
                 addUserElement(user.name, user.posts.length);
             }); 
         });
-    }();
+    };
+    fillUserList();
     
     function addUserElement (userName, postsCount) {
         postsCount = postsCount || 0;
         var el = USER_ITEM_TEMPLATE.replace('{USER-NAME}', userName);
         el = el.replace('{POSTS}', postsCount);
         usersElement.innerHTML = el + usersElement.innerHTML;        
-    };
+    }
     
     function addUserElementClick() {
         var inputField = d.querySelector('.input-field');
@@ -29,8 +30,7 @@
         if(inputValue) {
             addUserElement(inputValue);
         }        
-    };
-    
+    }    
     
     // Subscribe to get the total users.
     function setTotalUsers () {
@@ -59,8 +59,12 @@
     });
 
     var addUserButton = d.querySelector('#add-user');
-    addUserButton.addEventListener('click', function() {
-        addUserElementClick();
+    addUserButton.addEventListener('click', addUserElementClick);
+    
+    var resetBtn = d.querySelector('#reset-list');
+    resetBtn.addEventListener('click',  function() {
+        usersElement.innerHTML = '';
+        fillUserList();
     });
     
 })(window, document)
