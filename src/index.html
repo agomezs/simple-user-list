@@ -1,0 +1,47 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Aaron Gomez - Challenge</title>
+  <meta name="description" content="Challenge">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    
+    <div class="home-page center-content">
+        <section class="user-list">
+                <h1>User List</h1>
+                <div>
+                    <input type="text" class="input-field" placeholder="User name...">
+                    <button id="add-user">Add</button>
+                </div>
+                <div class="users">
+                    <div class="user-item center-content">
+                        <span>My new user</span>
+                        <button id="delete-user">Delete</button>
+                    </div>
+                </div>
+                <div class="users-counter">
+                    <span>Total Users:</span><span id="user-count"></span>
+                </div>
+        </section>
+    </div>
+    
+  <script src="js/app.js"></script>
+  
+  <!-- Helpers -->
+  <script src="js/helpers/polyfills.js"></script>
+  <script src="js/helpers/helper.js"></script>
+  <script src="js/helpers/observer.js"></script>
+  <script src="js/helpers/ajax.js"></script>
+  
+  <!-- Services -->
+  <script src="js/services/userService.js"></script>
+  
+  <!-- logic -->
+  <script src="js/userList/userList.js"></script>
+  
+</body>
+</html>
