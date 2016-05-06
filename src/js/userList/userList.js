@@ -1,7 +1,7 @@
 (function (w, d, u) {
     "use strict";
     
-    var USER_ITEM_TEMPLATE = '<div class="user-item center-content"><span>{USER-NAME}</span><span>({POSTS} posts)</span><button>Delete</button></div>';
+    var USER_ITEM_TEMPLATE = '<div class="user-item center-content"><span>{USER-NAME}</span><span>({POSTS} posts)</span><div title="Delete item" id="delete-user">DELETE</div></div>';
     
     var usersElement = d.querySelector('.user-list .users');
     // Extend the user list with the Subject's (observe) methods.
@@ -14,7 +14,7 @@
             }); 
         });
     };
-    fillUserList();
+    // fillUserList();
     
     function addUserElement (userName, postsCount) {
         postsCount = postsCount || 0;
@@ -45,7 +45,8 @@
     
     var addDeleteEventListener = function () {
         usersElement.addEventListener('click', function (e) {
-            if(e.target && e.target.nodeName === "BUTTON") {
+            console.log(e.target.innerText);
+            if(e.target && e.target.innerText === 'DELETE') {
                 // TODO: improve delete
                 e.target.parentElement.parentElement.removeChild(e.target.parentElement);
             }
