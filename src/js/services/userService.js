@@ -24,10 +24,9 @@
         var currentUser = users.find(function(user){
             return user.id == userId;
         });         
-        if(currentUser) {            
+        if(currentUser) {
             currentUser.posts = getPostsByUserId(currentUser.id);
         }
-        console.log("currentUserdd", currentUser.posts);
         return currentUser;
     }
     
