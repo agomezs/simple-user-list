@@ -8,5 +8,6 @@
     var myMainModule  = function () {};
     
    w.$ = myMainModule;
+   w.$.pages = {};
     
 })(window, document)

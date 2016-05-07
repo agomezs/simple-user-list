@@ -22,7 +22,7 @@
       // Home page - User List  
       '': function () {
         var el = d.querySelector('.main-content .home.page');
-        
+        w.$.pages.userListPage();
         el.classList.add('show');
       },
       // User detail page
@@ -31,6 +31,7 @@
           var index = url[1].trim();
           var el = d.querySelector('.main-content .details.page');
           el.classList.add('show');
+          w.$.pages.userDetailPage();
         } else {
           showErrorPage()
         }
