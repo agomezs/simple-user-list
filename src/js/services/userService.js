@@ -6,41 +6,46 @@
     
     var users = [];
     var posts = [];
-    var _callback;
     
-    function buildUsersList() {
+    function buildUsersList(_callback) {
         users.forEach(function(user){
             user.posts = posts.filter(function (post) {
                 return user.id === post.userId;
             });
         });
+
         if(_callback) {
             _callback(users);   
         }
     }
     
     function retrievePosts() {
-        w.$.getJson(POSTS_URL)
-        .then(function (response) {
-            posts = response;
-            buildUsersList();
-        });
+        return w.$.getJson(POSTS_URL);
     }
     
     function retrieveUsers() {
-        w.$.getJson(USERS_URL)
-        .then(function (response) {
-            users = response;
-            // TODO: make it pararell
-            retrievePosts();
+        return w.$.getJson(USERS_URL);
+    }
+    
+    function syncUserPromises(callback) {
+        Promise.all([retrieveUsers(), retrievePosts()])
+        .then(function (values) {
+            users = values[0];
+            posts = values[1];
+            buildUsersList(callback);
         });
     }
     
     var userService = {
       list: function (callback) {
           // TODO: use a promise.
-          _callback = callback;
-          retrieveUsers();
+          syncUserPromises(callback);
+      },
+      find: function (userId, callback) {
+        //   retrieveUsers();
+          return users.find(function(user) {
+              return user.id == userId; 
+          });
       }
     };
     

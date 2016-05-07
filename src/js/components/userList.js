@@ -1,7 +1,7 @@
 (function (w, d, u) {
     "use strict";
     
-    var USER_ITEM_TEMPLATE = '<div class="user-item center-content"><span>{USER-NAME}</span><span>({POSTS} posts)</span><div title="Go to details" id="details">...</div><div title="Delete item" id="delete-user">DELETE</div></div>';
+    var USER_ITEM_TEMPLATE = '<div class="user-item center-content" id="{ID}"><span>{USER-NAME}</span><span>({POSTS} posts)</span><div title="Go to details" id="details">...</div><div title="Delete item" id="delete-user">DELETE</div></div>';
     
     var usersElement = d.querySelector('.user-list .users');
     // Extend the user list with the Subject's (observe) methods.
@@ -10,16 +10,17 @@
     var fillUserList = function() {
         w.$.userService.list(function(users) {
             users.forEach(function(user){
-                addUserElement(user.name, user.posts.length);
+                addUserElement(user.name, user.id, user.posts.length);
             }); 
         });
     };
     fillUserList();
     
-    function addUserElement (userName, postsCount) {
+    function addUserElement (userName, userId, postsCount) {
         postsCount = postsCount || 0;
         var el = USER_ITEM_TEMPLATE.replace('{USER-NAME}', userName);
         el = el.replace('{POSTS}', postsCount);
+        el = el.replace('{ID}', userId);
         usersElement.innerHTML = el + usersElement.innerHTML;        
     }
     
@@ -30,7 +31,7 @@
         if(inputValue) {
             addUserElement(inputValue);
         }        
-    }    
+    }
     
     // Subscribe to get the total users.
     function setTotalUsers () {
@@ -51,7 +52,7 @@
                 e.target.parentElement.parentElement.removeChild(e.target.parentElement);
                 }
                 else if(e.target.innerText === '...') {
-                    
+                    w.location.hash = '#user/' + e.target.parentElement.id;
                 }
             }
         });

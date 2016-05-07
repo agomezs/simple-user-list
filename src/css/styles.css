@@ -129,6 +129,7 @@ button:active {
 
 #reset-list {
     margin-top: 1.8em;
+    width: 100%;
 }
 
 /*--------------*/
@@ -141,4 +142,11 @@ button:active {
 .main-content .page.show {
     display: flex;
     visibility: initial;
+}
+
+/*--------------*/
+/*Page: User details*/
+
+.details.page #return-btn {
+    width: 100%;
 }

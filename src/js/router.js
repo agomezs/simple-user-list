@@ -1,10 +1,6 @@
 (function(w, d){
   'use strict';
-  
-  // w.addEventListener('hashchange', function () {
-  //   console.log('hashchange');
-  // });
-  
+ 
   function showErrorPage() {
       var page = d.querySelector('.main-content .error.page');
       page.classList.add('show');
@@ -31,7 +27,7 @@
         el.classList.add('show');
       },
       // User detail page
-      '#userdetail': function () {
+      '#user': function () {
         if(url.length == 2) {
           var index = url[1].trim();
           var el = d.querySelector('.main-content .details.page');
