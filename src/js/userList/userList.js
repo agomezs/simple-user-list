@@ -45,9 +45,14 @@
     
     var addDeleteEventListener = function () {
         usersElement.addEventListener('click', function (e) {
-            if(e.target && e.target.innerText === 'DELETE') {
+            if(e.target) {
+                if(e.target.innerText === 'DELETE') {
                 // TODO: improve delete
                 e.target.parentElement.parentElement.removeChild(e.target.parentElement);
+                }
+                else if(e.target.innerText === '...') {
+                    
+                }
             }
         });
     }();
