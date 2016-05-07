@@ -1,4 +1,15 @@
 
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+}
+
+@media (min-width: 600px) {
+    body {
+        font-size: 1.25em;
+    }
+}
+
 /*--------------------*/
 /*Basic button style*/
 
@@ -13,6 +24,7 @@ button {
     background-color: #fff;
     border-color: #ccc;
     transition: all ease-in 0.1s;
+    font-size: 1em;
 }
 
 button:hover,
@@ -35,6 +47,7 @@ button:active {
     border: 1px solid #ccc;
     border-radius: 2px;
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    font-size: 1em;
 }
 
 
@@ -47,16 +60,22 @@ button:active {
     align-items: center;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 /*--------------------*/
 /*User list content*/
 
 .user-list {
-	/*flex-direction: column;*/
-	margin-bottom: 10px;
+    margin-bottom: 10px;
+    min-width: 450px;
+    max-width: 600px;
+    padding: 5px;
+}
+
+@media screen and (max-width: 600px) {
+    .user-list {
+        margin-bottom: 5px;
+        min-width: 200px;
+        max-width: 400px;
+    } 
 }
 
 .user-list .users {
@@ -68,7 +87,7 @@ body {
     justify-content: space-between;
     margin-top: 0.25em;
     transition: all ease-in 0.1s;
-    height: 1.9em; 
+    height: 2em; 
     position: relative;
 }
 
@@ -76,7 +95,6 @@ body {
 .user-list .user-item:focus {
     background-color: rgba(128,128,128, 0.1);
 }
-
 
 .user-list .user-item > span {
     padding-left: 4px;
@@ -89,7 +107,7 @@ body {
 .user-list .user-item #delete-user,
 .user-list .user-item  #details {
     position: absolute;
-    width: 34px;
+    width: 55px;
     height: 100%;
     opacity: 0;
     cursor: pointer;
@@ -110,9 +128,19 @@ body {
 
 .user-list .user-item  #details {
     background-color: green;
-    right: 42px;
+    right: 65px;
     color: white;
     font-size: 2em;
+}
+
+@media screen and (max-width: 600px) {
+    .user-list .user-item #delete-user,
+    .user-list .user-item  #details {
+        width: 40px;
+    }
+    .user-list .user-item  #details {
+     right: 50px;   
+    }
 }
 
 .user-list .user-item:hover #delete-user,
@@ -120,7 +148,6 @@ body {
     opacity: 0.9;
     transition-delay:0.2s;
 }
-
 
 .user-list .users-counter {
     margin-left: 2.5px;
@@ -161,9 +188,27 @@ body {
     margin-top: 1em;
 }
 
-.details.page .details-container{
-    min-width: calc(100% - 50%);
+.details.page .details-container {
+    min-width: 400px;
+    max-width: 700px;
+    padding: 5px;
 }
+
+@media screen and (max-width: 600px) {
+    .details.page .details-container {
+        min-width: 250px;
+    }
+}
+
+.details.page .details-container .post-details > div {
+    padding: 5px 0;
+}
+
+.details.page .details-container .post-details > div:nth-child(odd) {
+    background-color: #F9F9F9;
+}
+
+
 
 .details.page .details-container > div {
     min-height: 50px;
