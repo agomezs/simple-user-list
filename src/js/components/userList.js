@@ -12,7 +12,6 @@
     function fillUserList() {
         if(!isLoaded){
             w.$.userService.list(function (users) {
-                console.log('userslsit', users);
                 w.$.loading.hide(LOADING_CLASS);  
                 isLoaded = true;
                 users.forEach(function (user) {

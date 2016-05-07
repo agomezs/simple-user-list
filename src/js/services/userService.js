@@ -61,14 +61,12 @@
      **/
     function concatUsers() {
         var local = w.$.localstorage.get(LOCAL_USERS)
-        console.log('asd', userTemp);
         if(local && local.length > 0) {
             userTemp = users.concat(local);
         } else {
             
             userTemp = users;
         }
-        console.log('userTemp', userTemp);
         return userTemp;
     }
     
@@ -102,7 +100,7 @@
         if(userList.length > 0) {
             w.$.localstorage.set(LOCAL_USERS, userList);
         } else {
-            w.$.localstorage.remove(LOCAL_USERS);
+            w.$.localstorage.clean(LOCAL_USERS);
         }
     }
     
