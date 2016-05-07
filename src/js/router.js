@@ -9,7 +9,6 @@
   function showPage() {    
     
     var url = decodeURI(window.location.hash) || '';
-    console.log('url', url);
     url = url.split('/');
     
     var pageEls = d.querySelectorAll('.main-content .page');

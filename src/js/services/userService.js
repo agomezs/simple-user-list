@@ -5,16 +5,29 @@
     var POSTS_URL = 'http://jsonplaceholder.typicode.com/posts';
     
     var users = [];
+    var posts = [];
     
-    function buildUsersList(posts, callback) {
+    function buildUsersList() {
         users.forEach(function(user){
             user.posts = posts.filter(function (post) {
                 return user.id === post.userId;
             });
         });
-        if(callback) {
-            callback(users);   
+        return users;
+    }
+    
+    function buildUserById(userId) {
+        var currentUser = users.find(function(user){
+            return user.id == userId;
+        }); 
+        if(currentUser) {
+            currentUser.posts = posts.find(
+                function(post) {
+                    return post.userId == userId;
+                }
+            );
         }
+        return currentUser;
     }
     
     function postsPromise() {
@@ -28,19 +41,21 @@
     function syncUserPromises(callback) {
         Promise.all([usersPromise(), postsPromise()])
         .then(function (values) {
-            users = values[0];
-            buildUsersList(values[1], callback);
+            users = values[0] || [];
+            posts = values[1] || [];
+            callback();
         });
     }
     
     var userService = {
       list: function (callback) {
-          syncUserPromises(callback);
+          syncUserPromises(function() {
+            callback(buildUsersList());  
+          });
       },
       find: function (userId, callback) {
-        //   retrieveUsers();
-          return users.find(function(user) {
-              return user.id == userId; 
+          syncUserPromises(function() {
+            callback(buildUserById(userId));  
           });
       }
     };
