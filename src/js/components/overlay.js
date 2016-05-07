@@ -1,17 +1,17 @@
 (function(w, d){
   'use strict';
   
-  var overlay = {
-    enable: function() {
-      var el = d.querySelector('.overlay');
-      el.classList.add('active');   
+  var loading = {
+    show: function (className) {
+      d.querySelector(className)
+      .classList.add('active');
     },
-    disable:function() {
-      var el = d.querySelector('.overlay');
-      el.classList.remove('active');   
+    hide: function (className) {
+      d.querySelector(className)
+      .classList.remove('active');
     }
   };
   
-  // w.$.overlay = overlay;
+  w.$.loading = loading;
   
 })(window, document)

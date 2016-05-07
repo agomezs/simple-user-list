@@ -1,8 +1,9 @@
 (function (w, d) {
     "use strict";
     
-    var isLoaded = false;
+    var LOADING_CLASS = '.home.page .loading';
     var USER_ITEM_TEMPLATE = '<div class="user-item center-content" id="{ID}"><span>{USER-NAME}</span><span>({POSTS} posts)</span><div title="Go to details" id="details">...</div><div title="Delete item" id="delete-user">DELETE</div></div>';
+    var isLoaded = false;
     var usersElement = d.querySelector('.user-list .users');
     // Extend the user list with the Subject's (observe) methods.
     w.$.helper.extend(new w.$.Subject(), usersElement);
@@ -10,11 +11,14 @@
     function fillUserList() {
         if(!isLoaded){
             w.$.userService.list(function (users) {
+                w.$.loading.hide(LOADING_CLASS);  
                 isLoaded = true;
                 users.forEach(function (user) {
                     addUserElement(user.name, user.id, user.posts.length);
                 });
             });
+        } else {
+            w.$.loading.hide(LOADING_CLASS);
         }
     };
 
@@ -69,6 +73,7 @@
 
     var resetBtn = d.querySelector('#reset-list');
     resetBtn.addEventListener('click', function () {
+        w.$.loading.show(LOADING_CLASS);
         isLoaded = false;
         usersElement.innerHTML = '';
         fillUserList();
@@ -76,6 +81,7 @@
 
     var userListPage = function () {
         // Init function
+        w.$.loading.show(LOADING_CLASS);        
         fillUserList();
     };
 
