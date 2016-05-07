@@ -5,40 +5,36 @@
     var POSTS_URL = 'http://jsonplaceholder.typicode.com/posts';
     
     var users = [];
-    var posts = [];
     
-    function buildUsersList(_callback) {
+    function buildUsersList(posts, callback) {
         users.forEach(function(user){
             user.posts = posts.filter(function (post) {
                 return user.id === post.userId;
             });
         });
-
-        if(_callback) {
-            _callback(users);   
+        if(callback) {
+            callback(users);   
         }
     }
     
-    function retrievePosts() {
+    function postsPromise() {
         return w.$.getJson(POSTS_URL);
     }
     
-    function retrieveUsers() {
+    function usersPromise() {
         return w.$.getJson(USERS_URL);
     }
     
     function syncUserPromises(callback) {
-        Promise.all([retrieveUsers(), retrievePosts()])
+        Promise.all([usersPromise(), postsPromise()])
         .then(function (values) {
             users = values[0];
-            posts = values[1];
-            buildUsersList(callback);
+            buildUsersList(values[1], callback);
         });
     }
     
     var userService = {
       list: function (callback) {
-          // TODO: use a promise.
           syncUserPromises(callback);
       },
       find: function (userId, callback) {
