@@ -7,11 +7,15 @@
     var users = [];
     var posts = [];
     
+    function getPostsByUserId (userId) {
+        return posts.filter(function (post) {
+            return userId === post.userId;
+        });
+    }
+    
     function buildUsersList() {
         users.forEach(function(user){
-            user.posts = posts.filter(function (post) {
-                return user.id === post.userId;
-            });
+            user.posts = getPostsByUserId(user.id);;
         });
         return users;
     }
@@ -19,14 +23,11 @@
     function buildUserById(userId) {
         var currentUser = users.find(function(user){
             return user.id == userId;
-        }); 
-        if(currentUser) {
-            currentUser.posts = posts.find(
-                function(post) {
-                    return post.userId == userId;
-                }
-            );
+        });         
+        if(currentUser) {            
+            currentUser.posts = getPostsByUserId(currentUser.id);
         }
+        console.log("currentUserdd", currentUser.posts);
         return currentUser;
     }
     
