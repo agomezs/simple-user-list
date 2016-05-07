@@ -1,24 +1,6 @@
 (function (w) {
     "use strict";
 
-  // Observer list
-  function ObserverList(){
-    this.observerList = [];
-  }
-
-  ObserverList.prototype.Add = function(obj){
-    return this.observerList.push(obj);
-  };
-
-  // // Observer object
-  // function Observer() {
-  //   this.update = function() {
-  //
-  //   };
-  // }
-
-
-
   // Subject
   
   /**
@@ -26,12 +8,10 @@
    **/
   function Subject() {
       this.observers = [];
-      // this.observers = new ObserverList();
   }
   
   Subject.prototype = {
      subscribe : function(fnObserver){
-      // this.observers.Add(observer);
        this.observers.push(fnObserver);
     },
     notify : function(context) {
@@ -42,8 +22,6 @@
       });
     }
   };
-
-
 
   w.$.Subject = Subject;
 
