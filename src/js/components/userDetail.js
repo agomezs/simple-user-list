@@ -14,7 +14,6 @@
   }
   
   function setUserDetail (user) {
-    w.$.overlay.disable();
     var userEl = d.querySelector('.details.page .user-name');
     userEl.innerHTML = user.name + ' ('+ user.username +')';
     

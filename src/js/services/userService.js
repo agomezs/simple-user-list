@@ -21,13 +21,17 @@
     }
     
     function buildUserById(userId) {
-        var currentUser = users.find(function(user){
-            return user.id == userId;
-        });         
+        var currentUser = findUser(userId);         
         if(currentUser) {
             currentUser.posts = getPostsByUserId(currentUser.id);
         }
         return currentUser;
+    }
+    
+    function findUser(userId) {
+        return users.find(function(user){
+            return user.id == userId;
+        });
     }
     
     function postsPromise() {
@@ -54,9 +58,13 @@
           });
       },
       find: function (userId, callback) {
-          syncUserPromises(function() {
-            callback(buildUserById(userId));  
-          });
+          if(users.length > 0) {
+              callback(findUser(userId));
+          } else {
+            syncUserPromises(function() {
+                callback(buildUserById(userId));  
+            });
+          }
       }
     };
     

@@ -12,6 +12,6 @@
     }
   };
   
-  w.$.overlay = overlay;
+  // w.$.overlay = overlay;
   
 })(window, document)
