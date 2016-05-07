@@ -6,6 +6,9 @@ body {
     display: relative;
 }
 
+h1 {
+    text-align: center;
+}
 
 .main-content {
    margin-bottom: 80px;
@@ -240,7 +243,7 @@ button:active {
 .details.page .details-container {
     min-width: 400px;
     max-width: 700px;
-    padding: 5px;
+    padding: 8px;
 }
 
 @media screen and (max-width: 600px) {
@@ -250,12 +253,31 @@ button:active {
 }
 
 .details.page .details-container .post-details > div {
-    padding: 5px 0;
+    
 }
 
 .details.page .details-container .post-details > div:nth-child(odd) {
     background-color: #F9F9F9;
 }
+
+.details.page .post-details .post {
+    display: flex;
+    padding: 5px 0;
+}
+
+.details.page .post-details .post > div:first-child {
+    margin: auto 0;
+}
+
+.details.page .post-details .post > div:last-child {
+    margin-left: 5px;
+    padding-right: 5px;
+}
+
+.details.page .post-details .post > div:last-child::first-letter  {
+    text-transform: capitalize;
+}
+
 
 
 

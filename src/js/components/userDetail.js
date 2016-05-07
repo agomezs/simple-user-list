@@ -1,7 +1,7 @@
 (function(w, d) {
   'use strict';
   
-  var POST_DETAIL = '<div>{POST-DETAIL}</div>';
+  var POST_DETAIL = '<div class="post"><div>{id}.</div><div>{title}</div></div>';
   var LOADING_CLASS = '.details.page .loading';
   
   function findUserById () {
@@ -22,7 +22,8 @@
     var postEl = d.querySelector('.details.page .post-details');
     
     user.posts.forEach(function(post) {
-      var postDetail = POST_DETAIL.replace('{POST-DETAIL}', post.id + '. ' + post.title);
+      var postDetail = POST_DETAIL.replace('{id}', post.id);
+      var postDetail = postDetail.replace('{title}', post.title);
       postEl.innerHTML = postEl.innerHTML + postDetail;
     });
   };
