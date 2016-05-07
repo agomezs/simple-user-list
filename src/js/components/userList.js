@@ -3,6 +3,7 @@
     
     var LOADING_CLASS = '.home.page .loading';
     var USER_ITEM_TEMPLATE = '<div class="user-item center-content" id="{ID}"><span>{USER-NAME}</span><span>({POSTS} posts)</span><div title="Go to details" id="details">...</div><div title="Delete item" id="delete-user">DELETE</div></div>';
+    var LOCAL_USERS_KEY = 'local-users';
     var isLoaded = false;
     var usersElement = d.querySelector('.user-list .users');
     // Extend the user list with the Subject's (observe) methods.
@@ -11,6 +12,7 @@
     function fillUserList() {
         if(!isLoaded){
             w.$.userService.list(function (users) {
+                console.log('userslsit', users);
                 w.$.loading.hide(LOADING_CLASS);  
                 isLoaded = true;
                 users.forEach(function (user) {
@@ -35,7 +37,9 @@
         var inputValue = w.$.helper.scapeHtml(inputField.value);
         inputField.value = '';
         if (inputValue) {
-            addUserElement(inputValue);
+            var userId = usersElement.querySelectorAll('.user-item').length + 1;
+            w.$.userService.add(inputValue, userId);
+            addUserElement(inputValue, userId);
         }
     }
 
@@ -50,11 +54,13 @@
 
     // Add event listeners
 
+    // Handles the 'delete' and 'go to details' button.
     usersElement.addEventListener('click', function (e) {
         if (e.target) {
             if (e.target.innerText === 'DELETE') {
                 // TODO: improve delete
                 e.target.parentElement.parentElement.removeChild(e.target.parentElement);
+                w.$.userService.remove(e.target.parentElement.id);
             }
             else if (e.target.innerText === '...') {
                 w.location.hash = '#user/' + e.target.parentElement.id;
@@ -63,7 +69,6 @@
     });
 
     // Fire the notify method if the users dom is modified.
-    // var userList = d.querySelector('.user-list .users');
     usersElement.addEventListener('DOMSubtreeModified', function () {
         d.querySelector('.user-list .users').notify();
     });
@@ -73,6 +78,7 @@
 
     var resetBtn = d.querySelector('#reset-list');
     resetBtn.addEventListener('click', function () {
+        w.$.localstorage.clean(LOCAL_USERS_KEY);
         w.$.loading.show(LOADING_CLASS);
         isLoaded = false;
         usersElement.innerHTML = '';
