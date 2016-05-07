@@ -3,6 +3,17 @@
   
   var POST_DETAIL = '<div>{POST-DETAIL}</div>';
   
+  var loading = {
+    show: function () {
+      d.querySelector('.details.page .loading')
+      .classList.add('loading');
+    },
+    hide: function () {
+      d.querySelector('.details.page .loading')
+      .classList.remove('loading');
+    }
+  };
+  
   function findUserById () {
     var userId = decodeURI(window.location.hash);
     userId = userId.split('/')[1];
@@ -14,6 +25,7 @@
   }
   
   function setUserDetail (user) {
+    loading.hide();
     var userEl = d.querySelector('.details.page .user-name');
     userEl.innerHTML = user.name + ' ('+ user.username +')';
     
@@ -32,7 +44,7 @@
     });;
   
   var userDetailPage = function () {
-    // Init function
+    loading.show();
     cleanContent();
     findUserById();
   };

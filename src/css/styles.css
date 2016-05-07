@@ -154,9 +154,27 @@ button:active {
 
 .details.page #return-btn {
     width: 100%;
+    max-width: 100px;
     margin-top: 1em;
 }
 
+.details.page .details-container{
+    min-width: calc(100% - 50%);
+}
+
+.details.page .details-container > div {
+    min-height: 50px;
+}
+
+.loading {
+    background-image: url(/img/loading.gif);    
+    background-position: center;
+    height: 200px;
+    background-size: 350px;
+    background-repeat: no-repeat;
+}
+
+/*-----------------*/
 /* Overlay section*/
 .overlay {
   position: absolute;
