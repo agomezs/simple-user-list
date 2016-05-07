@@ -57,7 +57,6 @@
     usersElement.addEventListener('click', function (e) {
         if (e.target) {
             if (e.target.innerText === 'DELETE') {
-                // TODO: improve delete
                 e.target.parentElement.parentElement.removeChild(e.target.parentElement);
                 w.$.userService.remove(e.target.parentElement.id);
             }

@@ -20,12 +20,11 @@
         users.forEach(function(user){
             user.posts = getPostsByUserId(user.id);;
         });
-        return concatUsers();
-        // return users;
+        concatUsers();
+        return userTemp;
     }
     
     function buildUserById(userId) {
-        concatUsers();
         var currentUser = findUser(userId);         
         if(currentUser) {
             currentUser.posts = getPostsByUserId(currentUser.id);
@@ -34,6 +33,7 @@
     }
     
     function findUser(userId) {
+        concatUsers();
         return userTemp.find(function(user){
             return user.id == userId;
         });
@@ -63,11 +63,9 @@
         var local = w.$.localstorage.get(LOCAL_USERS)
         if(local && local.length > 0) {
             userTemp = users.concat(local);
-        } else {
-            
-            userTemp = users;
+        } else {            
+            userTemp = Object.assign([], users);
         }
-        return userTemp;
     }
     
     function addUser(userName, userId) {
@@ -90,14 +88,11 @@
     
    function removeUser(userId) {
         var userList = w.$.localstorage.get(LOCAL_USERS);
-
+        
         if(userList && userList.length > 0) {
-            var userToRemve = userList.filter(function(user) {
-                return user.id === userId;
+            userList = userList.filter(function(user) {
+                return user.id != userId;
             });
-            userList.pop(userToRemve);
-        }
-        if(userList.length > 0) {
             w.$.localstorage.set(LOCAL_USERS, userList);
         } else {
             w.$.localstorage.clean(LOCAL_USERS);
@@ -111,7 +106,7 @@
           });
       },
       find: function (userId, callback) {
-          if(userTemp.length > 0) {
+          if(users.length > 0) {
               callback(findUser(userId));
           } else {
             syncUserPromises(function() {
