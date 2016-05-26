@@ -1,65 +1,72 @@
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1em;
+* {
     margin: 0;
-    display: relative;
+    padding: 0;
 }
 
 h1 {
     text-align: center;
 }
 
-.main-content {
-   margin-bottom: 80px;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    text-align: center;
 }
+
+.row-content {
+  flex: 1 1 auto;
+  display: flex;
+}
+
+.app-header,
+.app-footer {
+    color: white;
+    background-color: #313131;
+    flex: 0 0 auto;
+    font-weight: bold;
+    padding: 0.50em 0;
+}
+
+.primary-sidebar, 
+.secondary-sidebar {
+    background: #eaeaea;
+    flex: 0 0 auto;
+    width: 20%;
+}
+
+@media screen and (max-width: 800px) {
+    .primary-sidebar, 
+    .secondary-sidebar {
+        width: 15%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .row-content {
+    flex-direction: column;
+    }
+}
+
+.main-content {
+    flex: 1 1 auto;
+}
+
 
 @media screen and (min-width: 600px) {
     body {
         font-size: 1.25em;
     }
-    header {
-        height: 25px;
-    }
-    footer { 
-        height: 50px;
-    }
 }
 
-header {
-    height: 45px;
-    background-color: #313131;
-    color: #EAE6E6;
-    font-weight: bold;
-    display: flex;
-    align-items: center;   
-    justify-content: center; 
-}
-
-footer {
-    height: 75px;
-    background-color: #313131;
-    color: #A2A2A2;
-    font-weight: bold;
-    display: flex;
-    align-items: center;   
-    justify-content: center;
-    position: fixed;
-    top: calc(100% - 75px);
-    width: 100%;
-}
 
 @media screen and (max-width: 600px) {
-    header {
-        height: 27px;
-    }
-    footer { 
-        height: 35px;
+    .app-header,
+    .app-footer {
         font-size: 0.75em;
-        top: calc(100% - 35px);
-    }
-   .main-content {
-        margin-bottom: 40px;
     }
 }
 
@@ -250,10 +257,6 @@ button:active {
     .details.page .details-container {
         min-width: 250px;
     }
-}
-
-.details.page .details-container .post-details > div {
-    
 }
 
 .details.page .details-container .post-details > div:nth-child(odd) {

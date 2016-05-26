@@ -6,55 +6,58 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Aaron Gomez - Challenge</title>
-    <meta name="description" content="Challenge">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
     
-    <header>Vanilla JS Challenge</header>
+    <header class="app-header">Vanilla JS Project </header>
     
     <!-- Overlay content-->
     <section class="overlay">
         <div><span>Loading...</span></div>
     </section>
-
-    <div class="main-content">
-        <!-- User List page-->
-        <section class="home page center-content">
-            <section class="user-list">
-                <h1>User List</h1>
-                <div>
-                    <input type="text" class="input-field" placeholder="User name...">
-                    <button id="add-user">Add</button>
-                </div>
-                <div class="users loading"></div>
-                <div class="users-counter">
-                    <span>Total Users:</span><span id="user-count"></span>
-                </div>
-                <button id="reset-list">Reset</button>
+    
+    <div class="row-content">
+        <aside class="primary-sidebar">Sidebar (left)</aside>
+        <div class="main-content">
+            <!-- User List page-->
+            <section class="home page center-content">
+                <section class="user-list">
+                    <h1>User List</h1>
+                    <div>
+                        <input type="text" class="input-field" placeholder="User name...">
+                        <button id="add-user">Add</button>
+                    </div>
+                    <div class="users loading"></div>
+                    <div class="users-counter">
+                        <span>Total Users:</span><span id="user-count"></span>
+                    </div>
+                    <button id="reset-list">Reset</button>
+                </section>
             </section>
-        </section>
-        
-        <!-- Details page -->
-        <section class="details page center-content">
-            <section class="details-container">
-                <h1>User Details</h1>
-                <div class="loading">
-                    <div class="user-name"></div>                    
-                    <div class="post-details"></div>                    
-                </div>
-                <button id="return-btn">Return</button>
+            
+            <!-- Details page -->
+            <section class="details page center-content">
+                <section class="details-container">
+                    <h1>User Details</h1>
+                    <div class="loading">
+                        <div class="user-name"></div>                    
+                        <div class="post-details"></div>                    
+                    </div>
+                    <button id="return-btn">Return</button>
+                </section>
             </section>
-        </section>
-        
-        <!-- Error page -->
-        <section class="error page center-content">
-            The current route does not exits
-        </section>        
+            
+            <!-- Error page -->
+            <section class="error page center-content">
+                The current route does not exits
+            </section>        
+        </div>
+        <aside class="secondary-sidebar">Sidebar (right)</aside>
     </div>
     
-    <footer>Aaron Gomez S. 2016 - aarongsojo@gmail.com</footer>
+    <footer class="app-footer">AJ 2016</footer>
 
     <script src="js/app.js"></script>
 
